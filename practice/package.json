@@ -9,12 +9,13 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "semistandard": "^16.0.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "semistandard && node my-normal-tests-littered-with-semicolons.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const HeaderBar = styled.header`
   display: flex;
@@ -22,15 +23,15 @@ const Logo = styled.img`
 
 const Nav = styled.nav`
   height: 100%;
-  padding-right: 30px;
 `;
 
 const Menu = styled.div`
   display: inline-block;
-  padding: 0 20px;
+  padding: 0 30px;
   line-height: 85px;
   font-size: 25px;
   font-weight: bold;
+  color: black;
   cursor: pointer;
   :hover {
     background-color: rgb(240, 240, 240);
@@ -53,11 +54,17 @@ const MobileMenu = styled.img`
 const Header = () => {
   return (
     <HeaderBar>
-      <Logo src='/images/Logo.png' />
+      <Link to='/'>
+        <Logo src='/images/Logo.png' />
+      </Link>
       <Nav>
-        <Menu>Alarm</Menu>
-        <Menu>Timer</Menu>
-        <MobileMenu src='/images/hamburgerMenu.png'/>
+        <Link to='/alarm'>
+          <Menu>Alarm</Menu>
+        </Link>
+        <Link to='/timer'>
+          <Menu>Timer</Menu>
+        </Link>
+        <MobileMenu src='/images/hamburgerMenu.png' />
       </Nav>
     </HeaderBar>
   );

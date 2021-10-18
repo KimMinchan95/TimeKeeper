@@ -23,6 +23,9 @@ const Logo = styled.img`
 
 const Nav = styled.nav`
   height: 100%;
+  @media screen and (max-width: 1024px) {
+    margin-right: 30px;
+  }
 `;
 
 const Menu = styled.div`

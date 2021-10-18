@@ -13,6 +13,10 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Do Hyeon', sans-serif;
     font-size: 20px;
     background-color: rgb(240, 240, 240);
+
+    #content {
+      min-height: calc(100vh - 50px);
+    }
   };
 `;
 

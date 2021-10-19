@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 const HeaderBar = styled.header`
   display: flex;
   position: fixed;
-  z-index: 10;
+  z-index: 1;
   width: 100%;
   height: 85px;
   justify-content: space-between;
-  background-color: rgb(173, 193, 243);
+  background-color: #acc1f3;
   @media screen and (max-width: 1024px) {
     height: 70px;
   }

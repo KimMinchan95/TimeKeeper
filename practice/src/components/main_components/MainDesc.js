@@ -1,7 +1,6 @@
 const MainDesc = () => {
   return (
-    <div>
-    </div>
+    <div />
   );
 };
 

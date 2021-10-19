@@ -8,28 +8,35 @@ const CurrentTimeContainer = styled.div`
 
 const TimerContainer = styled.section`
   text-align: center;
-  line-height: 70vh;
+  height: 50vh;
+  line-height: 60vh;
 `;
 
 const Time = styled.div`
   display: inline-block;
   padding-left: 10px;
-  font-size: 100px;
+  font-size: 150px;
+  @media screen and (max-width: 1024px) {
+    font-size: 13vw;
+  }
 `;
 
 const DayOrNight = styled.span`
   font-size: 35px;
+  @media screen and (max-width: 1024px) {
+    font-size: 20px;
+  }
 `;
 
 const CurrentTime = () => {
-  const [ current, setCurrent ] = useState(new Date().toLocaleTimeString());
+  const [current, setCurrent] = useState(new Date().toLocaleTimeString());
 
   useEffect(() => {
     const currentTime = () => {
       setCurrent(new Date().toLocaleTimeString());
-    }
-    setInterval(currentTime, 1000)
-    return () => clearInterval(currentTime)
+    };
+    setInterval(currentTime, 1000);
+    return () => clearInterval(currentTime);
   });
 
   return (

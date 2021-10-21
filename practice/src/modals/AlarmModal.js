@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import ReactDom from 'react-dom';
+import { useDispatch } from 'react-redux';
+import { insertAlarm } from '../app/modules/alarm';
 
 const AlarmModalContainer = styled.article`
   display: flex;
@@ -88,10 +90,79 @@ const TimeCheck = styled.div`
   border-bottom: 1px solid;
 `;
 
+const ChangeSound = styled.section`
+  display: flex;
+  width: 100%;
+  height: 10%;
+  font-size: 15px;
+  text-align: right;
+  div {
+    flex: 3;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+  }
+`;
+
+const SoundSelectBox = styled(SelectBox)`
+  flex: 5;
+`;
+
+const SoundButtonArea = styled.section`
+  flex: 1;
+  text-align: center;
+`;
+
+const SoundButton = styled.img`
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin-top: 7.5px;
+`;
+
+const ErrMessage = styled.div`
+  width: 100%;
+  height: 10%;
+  padding-top: 15px;
+  text-align: center;
+  border-top: 1px solid;
+`;
+
+const ButtonArea = styled.section`
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+const Submit = styled.button`
+  text-align: center;
+  font-size: 15px;
+  padding: 5px 10px;
+  background-color: #acc1f3;
+  border: none;
+  cursor: pointer;
+  :hover {
+    background-color: #A6A8E0;
+  }
+`;
+
+const CantSubmit = styled(Submit)`
+  background-color: gray;
+  :hover {
+    background-color: gray;
+  }
+`;
+
 const AlarmModal = ({ handleAlarmModal }) => {
   const [day, setDay] = useState('');
   const [hour, setHour] = useState('');
   const [minute, setMinute] = useState('');
+  const [sound, setSound] = useState('/sounds/basic.mp3');
+  const [play, setPlay] = useState(false);
+  const [err, setErr] = useState(false);
+
+  const dispatch = useDispatch();
   
   // Select Box를 위한 배열 생성
   const hours = [];
@@ -103,6 +174,7 @@ const AlarmModal = ({ handleAlarmModal }) => {
     minutes.push(i);
   }
 
+  // 실행을 위한 함수들
   const handleHour = (event) => {
     setHour(event.target.value);
   };
@@ -112,6 +184,30 @@ const AlarmModal = ({ handleAlarmModal }) => {
   const handleDay = (event) => {
     setDay(event.target.value);
   };
+  const handleSound = (event) => {
+    setSound(event.target.value);
+    handlePlayFalse();
+  };
+  const handlePlayFalse = () => {
+    setPlay(false);
+  };
+  const handlePlaySample = () => {
+    setPlay(true);
+    setTimeout(handlePlayFalse, 1000);
+  };
+  const handleErr = () => {
+    setErr(true);
+    const handleErrFalse = () => setErr(false);
+    setTimeout(handleErrFalse, 2000);
+  }
+
+  // 리덕스
+  const handleInsertAlarm = () => {
+    dispatch(insertAlarm({
+      day, hour, minute, sound
+    }))
+    handleAlarmModal();
+  }
 
   return ReactDom.createPortal(
     <AlarmModalContainer>
@@ -147,8 +243,27 @@ const AlarmModal = ({ handleAlarmModal }) => {
           </SelectArea>
         </TimeSelect>
         <TimeCheck>
-          {day !== '' && hour !== '' && minute !== '' ? `알람시간: ${day} ${hour}시 ${minute}분` : '시간을 입력해주세요'}
+          {day !== '' && hour !== '' && minute !== '' ? `알람시간: ${day} ${hour}시 ${minute}분` : '알람 시간을 입력해주세요'}
         </TimeCheck>
+        <ChangeSound>
+          <div>알람소리 설정</div>
+          <SoundSelectBox name='sound' onChange={handleSound}>
+            <option value='/sounds/basic.mp3'>basic</option>
+            <option value='/sounds/school.mp3'>school</option>
+            <option value='/sounds/tableClock.mp3'>tableClock</option>
+            <option value='/sounds/warning.mp3'>warning</option>
+          </SoundSelectBox>
+          <SoundButtonArea>
+            <SoundButton src='/images/play.png' onClick={handlePlaySample}/>
+          </SoundButtonArea>
+          {play ? <audio src={sound} autoPlay><source type='audio/mpeg' /></audio> : null}
+        </ChangeSound>
+        <ErrMessage>
+          {err ? '알람 시간을 선택해주셔야 합니다.' : null}
+        </ErrMessage>
+        <ButtonArea>
+          {day !== '' && hour !== '' && minute !== '' ? <Submit onClick={handleInsertAlarm}>설정 완료</Submit> : <CantSubmit onClick={handleErr}>설정 필수</CantSubmit>}
+        </ButtonArea>
       </Content>
     </AlarmModalContainer>,
     document.getElementById('portal')

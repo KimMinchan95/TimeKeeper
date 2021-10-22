@@ -163,7 +163,7 @@ const AlarmModal = ({ handleAlarmModal }) => {
   const [err, setErr] = useState(false);
 
   const dispatch = useDispatch();
-  
+
   // Select Box를 위한 배열 생성
   const hours = [];
   const minutes = [];
@@ -199,15 +199,15 @@ const AlarmModal = ({ handleAlarmModal }) => {
     setErr(true);
     const handleErrFalse = () => setErr(false);
     setTimeout(handleErrFalse, 2000);
-  }
+  };
 
   // 리덕스
   const handleInsertAlarm = () => {
     dispatch(insertAlarm({
       day, hour, minute, sound
-    }))
+    }));
     handleAlarmModal();
-  }
+  };
 
   return ReactDom.createPortal(
     <AlarmModalContainer>
@@ -236,7 +236,7 @@ const AlarmModal = ({ handleAlarmModal }) => {
             </SelectBox>
           </SelectArea>
           <SelectArea>
-          <SelectBox name='hour' onChange={handleMinute}>
+            <SelectBox name='hour' onChange={handleMinute}>
               <option value=''>분</option>
               {minutes.map(el => <option value={el} key={el}>{el}</option>)}
             </SelectBox>
@@ -254,7 +254,7 @@ const AlarmModal = ({ handleAlarmModal }) => {
             <option value='/sounds/warning.mp3'>warning</option>
           </SoundSelectBox>
           <SoundButtonArea>
-            <SoundButton src='/images/play.png' onClick={handlePlaySample}/>
+            <SoundButton src='/images/play.png' onClick={handlePlaySample} />
           </SoundButtonArea>
           {play ? <audio src={sound} autoPlay><source type='audio/mpeg' /></audio> : null}
         </ChangeSound>

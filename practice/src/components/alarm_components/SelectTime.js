@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import AlarmModal from '../../modals/AlarmModal';
+import AlarmTime from './AlarmTime';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { removeAlarm } from '../../app/modules/alarm';
+import { alarmSelector } from '../../app/modules/hooks';
 
 const SelectTimeContainer = styled.section`
   width: 100%;
@@ -22,7 +27,16 @@ const AlarmButton = styled.button`
   }
 `;
 
+const RemoveAlarmButton = styled(AlarmButton)`
+  background-color: #d34a4a;
+  :hover {
+    background-color: #aa2929;
+  }
+`;
+
 const SelectTime = () => {
+  const dispatch = useDispatch();
+  const alarm = useSelector(alarmSelector);
   const [visible, setVisible] = useState(false);
 
   const handleAlarmModal = () => {
@@ -31,9 +45,14 @@ const SelectTime = () => {
     });
   };
 
+  const handleRemoveAlarm = () => {
+    dispatch(removeAlarm());
+  };
+
   return (
     <SelectTimeContainer>
-      <AlarmButton onClick={handleAlarmModal}>Alarm</AlarmButton>
+      {alarm.info.day === '' ? null : <AlarmTime />}
+      {alarm.info.day === '' ? <AlarmButton onClick={handleAlarmModal}>Alarm</AlarmButton> : <RemoveAlarmButton onClick={handleRemoveAlarm}>Remove</RemoveAlarmButton>}
       {visible ? <AlarmModal handleAlarmModal={handleAlarmModal} /> : null}
     </SelectTimeContainer>
   );

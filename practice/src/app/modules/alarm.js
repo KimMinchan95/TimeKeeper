@@ -21,10 +21,19 @@ export const alarmSlice = createSlice({
         sound: action.payload.sound
       };
       state.info = alarm;
+    },
+    removeAlarm: (state) => {
+      const alarm = {
+        day: '',
+        hour: '',
+        minute: '',
+        sound: ''
+      };
+      state.info = alarm;
     }
   }
 });
 
-export const { insertAlarm } = alarmSlice.actions;
+export const { insertAlarm, removeAlarm } = alarmSlice.actions;
 
 export default alarmSlice.reducer;

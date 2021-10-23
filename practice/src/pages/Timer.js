@@ -1,6 +1,10 @@
+import TimerTitle from '../components/timer_components/TimerTitle';
+
 const Timer = () => {
   return (
-    <div />
+    <>
+      <TimerTitle />
+    </>
   );
 };
 

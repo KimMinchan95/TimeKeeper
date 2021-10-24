@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import MobileModal from '../modals/MobileModal';
 
 const HeaderBar = styled.header`
   display: flex;
@@ -55,6 +57,14 @@ const MobileMenu = styled.img`
 `;
 
 const Header = () => {
+  const [modal, setModal] = useState (false);
+
+  const handleModal = () => {
+    setModal(prevState => {
+      return !prevState;
+    })
+  };
+
   return (
     <HeaderBar>
       <Link to='/'>
@@ -67,8 +77,9 @@ const Header = () => {
         <Link to='/timer'>
           <Menu>Timer</Menu>
         </Link>
-        <MobileMenu src='/images/hamburgerMenu.png' />
+        <MobileMenu onClick={handleModal} src='/images/hamburgerMenu.png' />
       </Nav>
+      {modal ? <MobileModal /> : null}
     </HeaderBar>
   );
 };

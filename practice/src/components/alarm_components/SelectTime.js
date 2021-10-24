@@ -16,6 +16,7 @@ const AlarmButton = styled.button`
   text-align: center;
   font-size: 25px;
   padding: 5px 10px;
+  margin-bottom: 10px;
   background-color: #acc1f3;
   border: none;
   cursor: pointer;

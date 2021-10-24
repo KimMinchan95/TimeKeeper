@@ -11,7 +11,7 @@ const CurrentTimeContainer = styled.div`
 
 const TimerContainer = styled.section`
   text-align: center;
-  height: 50vh;
+  height: 45vh;
   line-height: 60vh;
 `;
 
@@ -67,7 +67,7 @@ const CurrentTime = () => {
       {current.slice(0, -6) === alarmTime && current.slice(-2) === day
         ? <audio src={sound} autoPlay loop>
           <source type='audio/mpeg' />
-          </audio>
+          </audio> // eslint-disable-line
         : null}
     </CurrentTimeContainer>
   );

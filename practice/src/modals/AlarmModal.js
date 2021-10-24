@@ -27,6 +27,9 @@ const Content = styled.main`
   width: 450px;
   background-color: white;
   z-index: 6;
+  @media screen and (max-width: 650px) {
+    width: 100vw;
+  }
 `;
 
 const Header = styled.section`

@@ -1,9 +1,11 @@
-import MainDesc from '../components/main_components/MainDesc';
+import AlarmDesc from '../components/main_components/AlarmDesc';
+import TimerDesc from '../components/main_components/TimerDesc';
 
 const Main = () => {
   return (
     <>
-      <MainDesc />
+      <AlarmDesc />
+      <TimerDesc />
     </>
   );
 };

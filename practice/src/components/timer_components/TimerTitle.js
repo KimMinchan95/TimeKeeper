@@ -5,7 +5,7 @@ const TimerTitleContainer = styled.main`
   height: 25vh;
   width: 100vw;
   text-align: center;
-  font-size: 40px;
+  font-size: 50px;
   vertical-align: bottom;
 `;
 

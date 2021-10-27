@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const TimerDescContainer = styled.section`
-  height: 42vh;
+  height: 35vh;
 `;
 
 const TimerTitle = styled.div`

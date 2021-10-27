@@ -57,12 +57,12 @@ const MobileMenu = styled.img`
 `;
 
 const Header = () => {
-  const [modal, setModal] = useState (false);
+  const [modal, setModal] = useState(false);
 
   const handleModal = () => {
     setModal(prevState => {
       return !prevState;
-    })
+    });
   };
 
   return (
@@ -79,7 +79,7 @@ const Header = () => {
         </Link>
         <MobileMenu onClick={handleModal} src='/images/hamburgerMenu.png' />
       </Nav>
-      {modal ? <MobileModal /> : null}
+      {modal ? <MobileModal handleModal={handleModal} /> : null}
     </HeaderBar>
   );
 };

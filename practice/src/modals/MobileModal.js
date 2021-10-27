@@ -36,9 +36,9 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const MobileModal = () => {
+const MobileModal = ({ handleModal }) => {
   return (
-    <MobileModalContainer>
+    <MobileModalContainer onClick={handleModal}>
       <Menu>
         <StyledLink to='/alarm'>Alarm</StyledLink>
       </Menu>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const AlarmDescContainer = styled.section`
-  height: 42vh;
+  height: 35vh;
   border-bottom: 1px solid;
 `;
 

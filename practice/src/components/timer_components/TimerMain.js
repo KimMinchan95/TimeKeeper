@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const TimerMainContainer = styled.main`
-  height: 35vh;
+  height: 15vh;
 `;
 
 const TimerClock = styled.section`
@@ -41,7 +41,7 @@ const TimerMain = () => {
       }
     }, 1000);
     return () => clearInterval(timer);
-  }, [hour, minute, second])
+  }, [hour, minute, second]);
 
   return (
     <TimerMainContainer>
